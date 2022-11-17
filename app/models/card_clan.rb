@@ -1,0 +1,2 @@
+class CardClan < ApplicationRecord
+end
