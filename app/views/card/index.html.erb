@@ -2,14 +2,18 @@
   <div class="grid">
     <% @cards.each do |card| %>
       <div class="card g-col-md-3 border border-5 border-dark">
+        <% if card.image.present? %>
+          <img src="<%= card.image %>" alt="<%= card.name%> " class="img-fluid">
+        <% else %>
         <% 
-        require 'net/http'
-        require 'uri'
-        img_url = card.img
-        res = Net::HTTP.get_response(URI.parse(img_url))
-        img_url = 'https://images.vanguardcard.io/images/assets/CardBack.jpg' unless res.code.to_i >= 200 && res.code.to_i < 400
-      %>
-        <img src="<%=img_url%>" alt="<%= card.name%> " class="img-fluid">
+          require 'net/http'
+          require 'uri'
+          img_url = card.img
+          res = Net::HTTP.get_response(URI.parse(img_url))
+          img_url = 'https://images.vanguardcard.io/images/assets/CardBack.jpg' unless res.code.to_i >= 200 && res.code.to_i < 400
+        %>
+          <img src="<%=img_url%>" alt="<%= card.name%> " class="img-fluid">
+        <% end %>
         <div class="card-body">
           <h5 class="card-text text-center "><%= link_to card.name, card, :class => "text-decoration-none"%></h5>
           <p class="card-text text-center "><%= card.effect%></p>
