@@ -8,6 +8,11 @@ gem 'json', '~> 2.6', '>= 2.6.2'
 gem 'kaminari', '~> 1.2', '>= 1.2.2'
 gem 'net-http', '~> 0.2.2'
 
+gem 'webpacker', '~> 5.4', '>= 5.4.3'
+
+gem 'activeadmin'
+gem 'devise'
+gem 'image_processing', '~> 1.12', '>= 1.12.2'
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.4"
 
