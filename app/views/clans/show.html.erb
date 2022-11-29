@@ -1,0 +1,32 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="<%= homepage_path %>">Home</a></li>
+    <li class="breadcrumb-item"><a href="">Clan</a></li>
+    <li class="breadcrumb-item active" aria-current="page"><%=@clan.name%></li>
+  </ol>
+</nav>
+<div class="container-fluid">
+  <div class="grid">
+    <% @clan.cards.each do |card_clan| %>
+      <div class="card g-col-md-3 border border-5 border-dark">
+         <% if card_clan.image.present? %>
+          <%= image_tag card_clan.image, :alt => card_clan.name, :class => "img-fluid" %>
+        <% else %>
+        <% 
+          require 'net/http'
+          require 'uri'
+          img_url = card_clan.img
+          res = Net::HTTP.get_response(URI.parse(img_url))
+          img_url = 'https://images.vanguardcard.io/images/assets/CardBack.jpg' unless res.code.to_i >= 200 && res.code.to_i < 400
+        %>
+          <img src="<%=img_url%>" alt="<%= card_clan.name%> " class="img-fluid">
+        <% end %>
+        <div class="card-body">
+          <h5 class="card-text text-center "><%= link_to card_clan.name, card_clan, :class => "text-decoration-none"%></h5>
+          <p class="card-text text-center "><%= card_clan.effect%></p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+

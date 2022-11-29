@@ -1,0 +1,10 @@
+body * {
+    font-family: "游ゴシック Medium",Yu Gothic Medium,"游ゴシック体",YuGothic,"ヒラギノ角ゴ Pro W3",Hiragino Kaku Gothic Pro,"メイリオ",Meiryo,Osaka,sans-serif;
+}
+
+#searchbar {
+    transition: height 150ms ease-in-out;
+}
+#searchbar .btn {
+    font-size: 13px;
+}

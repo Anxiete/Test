@@ -1,10 +1,13 @@
-<div class="container-fluid">
+<%= render "header" %>
+<div class="container-fluid p-5">
   <div class="grid">
     <% @cards.each do |card| %>
       <div class="card g-col-md-3 border border-5 border-dark">
+      <!-- Checks to see if theres an image on active storage if not, uses images link instead. -->
         <% if card.image.present? %>
           <img src="<%= card.image %>" alt="<%= card.name%> " class="img-fluid">
         <% else %>
+        <!-- Checks to see if the image link is valid. If not, uses a image of a card back of cardfight vanguard. -->
         <% 
           require 'net/http'
           require 'uri'

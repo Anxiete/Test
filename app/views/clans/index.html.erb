@@ -1,0 +1,24 @@
+<nav aria-label="breadcrumb ">
+  <ol class="breadcrumb pt-3">
+    <li class="breadcrumb-item"><a href="<%= homepage_path %>">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page"><a href="">Clan</a></li>
+  </ol>
+</nav>
+<div class="container-fluid">
+  <div class="grid">
+    <% @clans.each do |clan| %>
+        <div class="card g-col-md-4 m-2 p-4">
+            <div class="card-body">
+            <h3 class="card-text text-center "><%= link_to clan.name, clan_path(clan) %> </a></h3>
+            </div>
+        </div>
+    <% end %>
+</div>
+    <div class="justify-content-center text-center mt-3 mb-3">
+        <%= page_entries_info @clans %>
+    </div>
+    <div class="pagination justify-content-center">
+        <%= paginate @clans, window: 2 %>
+    </div>
+</div>
+
