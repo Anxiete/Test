@@ -1,5 +1,3 @@
 class Contact < ApplicationRecord
-    def index
-        
-    end
+    validates :content, presence: true
 end

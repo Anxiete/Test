@@ -7,9 +7,10 @@ Rails.application.routes.draw do
   # root "articles#index"
   root "card#index"
 
-  resources :card, :clans
+  resources :card, :clans, :about, :contact
 
   get "/search", to: "card#search", as: "search"
-  get "/about", to: "card#about", as: "aboutstore"
+  get "/about", to: "about#index", as: "aboutstore"
+  get "/contact_us", to: "contact#index", as: "contactus"
   get "/home", to: "card#main", as: "homepage"
 end
