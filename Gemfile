@@ -13,6 +13,7 @@ gem 'webpacker', '~> 5.4', '>= 5.4.3'
 gem 'activeadmin'
 gem 'devise'
 gem 'image_processing', '~> 1.12', '>= 1.12.2'
+gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'main'
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.4"
 

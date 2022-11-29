@@ -7,6 +7,10 @@
 #   Character.create(name: "Luke", movie: movies.first)
 require "open-uri"
 require "json"
+require 'faker'
+
+Card.destroy_all
+CardClan.destroy_all
 
 
 def card_fetch(url)
@@ -31,10 +35,11 @@ card_products.each do |card|
     flavor: card['flavor'],
     effect: card['effect'],
     format: card['format'],
-    img: card['image_url']
+    img: card['image_url'],
+    price: Faker::Number.(l_digits: 2)
     )
   end
 end
 puts "Created #{Card.count} cards"
 puts "Created #{CardClan.count} clans"
-AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
+# AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?

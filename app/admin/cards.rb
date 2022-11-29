@@ -5,7 +5,7 @@ ActiveAdmin.register Card do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  permit_params :name, :card_type, :power, :shield, :nation, :grade, :race, :flavor, :effect, :format, :card_clan_id, :img, :image
+  permit_params :name, :card_type, :power, :shield, :nation, :grade, :race, :flavor, :effect, :format, :card_clan_id, :price, :img, :image
     form do |f|
     f.semantic_errors
     f.inputs
