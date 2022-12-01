@@ -38,7 +38,7 @@
           <p class="card-text">Clan: <%= link_to @card.card_clan.name, clan_path(@card.card_clan) %></p>
           <p class="card-text">Shield: <%= @card.shield %></p>
           <p class="card-text">Effect: <%= @card.effect %></p>
-          <p class="card-text">Price: $<%= @card.price %></p>
+          <p class="card-text">Price: <%=number_to_currency @card.price %></p>
         </div>
       </div>
     </div>
