@@ -18,7 +18,7 @@
     <div class="row g-0">
       <div class="col-md-4">
         <% if @card.image.present? %>
-          <%= image_tag @card.image, :alt => @card.name, :class => "img-fluid" %>
+          <%= image_tag url_for(@card.image), :alt => @card.name, :class => "img-fluid" %>
         <% else %>
           <% 
           require 'net/http'
