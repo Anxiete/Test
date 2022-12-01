@@ -2,7 +2,7 @@
 <div class="container-fluid p-5">
   <div class="grid">
     <% @cards.each do |card| %>
-      <div class="card g-col-md-3 border border-5 border-dark">
+      <div class="card g-col-md-3 border border-3 border-dark p-3">
       <!-- Checks to see if theres an image on active storage if not, uses images link instead. -->
         <% if card.image.present? %>
           <img src="<%= card.image %>" alt="<%= card.name%> " class="img-fluid">

@@ -14,6 +14,8 @@ gem 'activeadmin'
 gem 'devise'
 gem 'image_processing', '~> 1.12', '>= 1.12.2'
 gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'main'
+gem "aws-sdk-s3", require: false
+
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.4"
 

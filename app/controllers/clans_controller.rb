@@ -6,6 +6,5 @@ class ClansController < ApplicationController
 
   def show
     @clan = CardClan.find(params[:id])
-    # @roles_legends = @role.legends
   end
 end

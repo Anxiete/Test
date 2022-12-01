@@ -2,19 +2,19 @@
 <div class="container-fluid">
   <div class="row">
     <div class="column-margin col-lg-9 mx-auto p-2">
-      <h1 class="fw-bold">About Us</h1>
+      <h1 class="fw-bold">Card Information</h1>
       <nav aria-label="breadcrumb ">
         <ol class="breadcrumb pt-3">
           <li class="breadcrumb-item"><a href="<%= homepage_path %>">Home</a></li>
           <li class="breadcrumb-item"><a href="">Clan</a></li>
-          <li class="breadcrumb-item"><%=link_to @card.card_clan.name, clan_path(@card) %></li>
+          <li class="breadcrumb-item"><%=link_to @card.card_clan.name, clan_path(@card.card_clan) %></li>
           <li class="breadcrumb-item active" aria-current="page"><%=@card.name%></li>
         </ol>
       </nav>
       <hr class="mt-3">
     </div>
   </div>
-  <div class="card mb-1 mx-auto " style="max-width: 75%;">
+  <div class="card mb-1 mx-auto p-3 " style="max-width: 75%;">
     <div class="row g-0">
       <div class="col-md-4">
         <% if @card.image.present? %>
@@ -33,9 +33,9 @@
       <div class="col-md-8">
         <div class="card-body">
           <h5 class="card-title"><%= @card.name%></h5>
-          <p class="card-text"><%= @card.flavor %></p>
+          <p><i class="card-text"><%= @card.flavor %></i></p>
           <p class="card-text">Power: <%= @card.power %></p>
-          <p class="card-text">Clan: <%= link_to @card.card_clan.name, clan_path(@card) %></p>
+          <p class="card-text">Clan: <%= link_to @card.card_clan.name, clan_path(@card.card_clan) %></p>
           <p class="card-text">Shield: <%= @card.shield %></p>
           <p class="card-text">Effect: <%= @card.effect %></p>
           <p class="card-text">Price: $<%= @card.price %></p>
