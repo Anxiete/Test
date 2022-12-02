@@ -39,6 +39,10 @@
           <p class="card-text">Shield: <%= @card.shield %></p>
           <p class="card-text">Effect: <%= @card.effect %></p>
           <p class="card-text">Price: <%=number_to_currency @card.price %></p>
+          <%= form_with url: cart_index_path, method: :post do%>
+            <%= hidden_field_tag(:id, @card.id)%>
+            <%= button_tag 'Add to Cart' %>
+          <% end %>
         </div>
       </div>
     </div>

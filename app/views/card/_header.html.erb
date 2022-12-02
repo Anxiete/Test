@@ -31,6 +31,19 @@
             <i class="fa-solid fa-magnifying-glass"></i>
           </a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="<%= cart_index_path %>">
+            <i class="fas fa-shopping-cart fs-5">
+              <% if session[:shopping_cart].any? %>
+                <% if session[:shopping_cart].count > 0 && session[:shopping_cart].count < 100 %>
+                  <sup class="text-white rounded-1 bg-danger pb-1 px-2 "><%= session[:shopping_cart].count %></sup>
+                <% else %>
+                  <sup class="text-white rounded-1 bg-danger pb-1 px-2 ">99+</sup>
+                <% end %>
+              <% end %>
+            </i>
+          </a>
+        </li>
       </ul>
     </div>
   </div>

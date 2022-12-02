@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   root "card#index"
 
   resources :card, :clans, :about, :contact
+  resources :cart, only:[:create, :destroy]
 
   get "/search", to: "card#search", as: "search"
   get "/about", to: "about#index", as: "aboutstore"
