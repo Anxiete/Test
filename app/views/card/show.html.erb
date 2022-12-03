@@ -34,14 +34,14 @@
         <div class="card-body">
           <h5 class="card-title"><%= @card.name%></h5>
           <p><i class="card-text"><%= @card.flavor %></i></p>
-          <p class="card-text">Power: <%= @card.power %></p>
           <p class="card-text">Clan: <%= link_to @card.card_clan.name, clan_path(@card.card_clan) %></p>
+          <p class="card-text">Power: <%= @card.power %></p>
           <p class="card-text">Shield: <%= @card.shield %></p>
           <p class="card-text">Effect: <%= @card.effect %></p>
           <p class="card-text">Price: <%=number_to_currency @card.price %></p>
           <%= form_with url: cart_index_path, method: :post do%>
             <%= hidden_field_tag(:id, @card.id)%>
-            <%= button_tag 'Add to Cart' %>
+            <%= button_tag 'Add to Cart', :class => "btn btn-outline-success shadow-sm mt-5 w-100 fw-bold text-uppercase" %>
           <% end %>
         </div>
       </div>

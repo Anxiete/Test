@@ -20,19 +20,21 @@
         <div class="card-body">
           <h5 class="card-text text-center "><%= link_to card.name, card, :class => "text-decoration-none"%></h5>
           <p class="card-text text-center ">Price: <%= number_to_currency card.price%></p>
-          <p class="card-text text-center "><%= card.effect%></p>
-
+          <% if card.effect.length > 200%>
+            <p class="card-text text-center "><%= card.effect[0..201] %>...<a class="text-decoration-none" href="<%= card_path(card) %>"> Read More</a></p>
+          <% else %>
+            <p class="card-text text-center "><%= link_to card.name, card, :class => "text-decoration-none"%><%= card.effect%></p>
+          <% end %>
           <% if cart.include?(card) %>
             <%= button_to cart_path(card), method: :delete do%>
               Remove from cart
-          <% end %>
+            <% end %>
           <% else %>
             <%= form_with url: cart_index_path, method: :post do%>
               <%= hidden_field_tag(:id, card.id)%>
-              <%= button_tag 'Add to Cart' %>
+              <%= button_tag 'Add to Cart', :class => "btn btn-outline-success shadow-sm mt-5 w-100 fw-bold text-uppercase" %>
             <% end %>
           <% end %>
-
         </div>
       </div>
     <% end %>
