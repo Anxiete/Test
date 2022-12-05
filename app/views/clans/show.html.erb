@@ -1,5 +1,12 @@
 <%= render "card/header" %>
-<div class="container-fluid p-5">
+<nav aria-label="breadcrumb ">
+  <ol class="breadcrumb pt-3 ps-3">
+    <li class="breadcrumb-item"><a href="<%= homepage_path %>">Home</a></li>
+    <li class="breadcrumb-item"><a href="<%= clans_path %>">Clan</a></li>
+    <li class="breadcrumb-item active" aria-current="page"><%=@clan.name%></a></li>
+  </ol>
+</nav>
+<div class="container-fluid ps-5 p3-5 pb-5">
   <div class="grid">
     <% @clan.cards.each do |card_clan| %>
       <div class="card g-col-md-3 border border-3 border-dark p-3">
@@ -25,6 +32,4 @@
       </div>
     <% end %>
   </div>
-
-
 </div>

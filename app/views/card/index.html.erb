@@ -1,5 +1,8 @@
 <%= render "header" %>
 <div class="container-fluid p-5">
+  <% if flash[:notice] %>
+    <p><%= flash[:notice] %></p>
+  <% end %>
   <div class="grid">
     <% @cards.each do |card| %>
       <div class="card g-col-md-3 border border-3 border-dark p-3">
@@ -26,7 +29,7 @@
             <p class="card-text text-center "><%= link_to card.name, card, :class => "text-decoration-none"%><%= card.effect%></p>
           <% end %>
           <% if cart.include?(card) %>
-            <%= button_to cart_path(card), method: :delete do%>
+            <%= button_to cart_path(card), :class => "btn btn-outline-danger shadow-sm mt-5 w-100 fw-bold text-uppercase", method: :delete do%>
               Remove from cart
             <% end %>
           <% else %>

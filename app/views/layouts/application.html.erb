@@ -15,11 +15,7 @@
   </head>
 
   <body>
-    <% if flash[:notice] %>
-      <p><%= flash[:notice] %></p>
-    <% end %>
-    
-    <%= debug cart %>
+    <%= debug session[:shopping_cart] %>
     <%= yield %>
   </body>
 </html>
