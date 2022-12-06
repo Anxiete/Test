@@ -11,7 +11,29 @@ require 'faker'
 
 Card.destroy_all
 CardClan.destroy_all
+Province.destroy_all
 
+provinces = [
+  { :name => "Alberta", :provincial => "0.00", :goods_and_services => "0.05", :harmonized => "0.00" },
+  { :name => "British Columbia", :provincial => "0.07", :goods_and_services => "0.05", :harmonized => "0.00" },
+  { :name => "Manitoba", :provincial => "0.07", :goods_and_services => "0.05", :harmonized => "0.00" },
+  { :name => "New Brunswick", :provincial => "0.00", :goods_and_services => "0.00", :harmonized => "0.15" },
+  { :name => "Newfoundland and Labrador", :provincial => "0.00", :goods_and_services => "0.00", :harmonized => "0.15" },
+  { :name => "Northwest Territories", :provincial => "0.00", :goods_and_services => "0.05", :harmonized => "0.00" },
+  { :name => "Nova Scotia", :provincial => "0.00", :goods_and_services => "0.00", :harmonized => "0.15" },
+  { :name => "Nunavut", :provincial => "0.00", :goods_and_services => "0.05", :harmonized => "0.00" },
+  { :name => "Ontario", :provincial => "0.00", :goods_and_services => "0.00", :harmonized => "0.13" },
+  { :name => "Prince Edward Island", :provincial => "0.00", :goods_and_services => "0.00", :harmonized => "0.15" },
+]
+
+provinces.each do |province|
+  Province.create(
+      name:               province[:name],
+      pst:         province[:provincial],
+      gst: province[:goods_and_services],
+      hst:         province[:harmonized]
+  )
+end
 
 def card_fetch(url)
   JSON.parse(URI.open(url).read)
@@ -42,4 +64,5 @@ card_products.each do |card|
 end
 puts "Created #{Card.count} cards"
 puts "Created #{CardClan.count} clans"
-# AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
+puts "Created #{Province.count} Provinces"
+AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?

@@ -43,6 +43,8 @@ Rails.application.configure do
   # Store files on Amazon S3.
   config.active_storage.service = :amazon
 
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
 
   # Mount Action Cable outside main process or domain.
   # config.action_cable.mount_path = nil

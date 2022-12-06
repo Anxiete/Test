@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_28_182548) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_05_013538) do
   create_table "abouts", force: :cascade do |t|
     t.string "content"
     t.datetime "created_at", null: false
@@ -92,6 +92,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_28_182548) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "img"
+    t.float "price"
     t.index ["card_clan_id"], name: "index_cards_on_card_clan_id"
   end
 
@@ -110,8 +111,32 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_28_182548) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "provinces", force: :cascade do |t|
+    t.string "name"
+    t.decimal "pst"
+    t.decimal "gst"
+    t.decimal "hst"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "province_id", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["province_id"], name: "index_users_on_province_id"
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "cards", "card_clans"
   add_foreign_key "comments", "cards", column: "cards_id"
+  add_foreign_key "users", "provinces"
 end

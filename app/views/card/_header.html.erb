@@ -26,6 +26,28 @@
     </div>
     <div class="d-flex pe-4">
       <ul class="navbar-nav">
+        <% if user_signed_in? %>
+          <li class="nav-item dropdown">
+            <a class="nav-link" href="#" id="navbarDropdown-1" role="button" data-bs-toggle="dropdown"><i class="fas fa-user-circle text-warning fs-5"></i>
+            </a>
+            <ul class="dropdown-menu text-uppercase" aria-labelledby="navbarDropdown-1">
+              <li><a class="dropdown-item" href="<%= edit_user_registration_path %>">My Account</a></li>
+              <li><a class="dropdown-item" href="#">My Orders</a></li>
+              <li><%= link_to "Log Out", destroy_user_session_path, method: :delete, :class => "dropdown-item" %></li>
+            </ul>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <a class="nav-link" href="
+                    <% if user_signed_in? %>
+                        <%= edit_user_registration_path %>
+                    <% else %>
+                        <%= new_user_session_path %>
+                    <% end %>
+                ">
+              <i class="fas fa-user-circle fs-5"></i></a>
+          </li>
+        <% end %>
         <li class="nav-item">
           <a class="nav-link" data-bs-toggle="collapse" href="#searchbar">
             <i class="fas fa-search fs-5"></i>
