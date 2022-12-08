@@ -1,7 +1,10 @@
 <%= render "header" %>
 <div class="container-fluid p-5">
   <% if flash[:notice] %>
-    <p><%= flash[:notice] %></p>
+    <p class="text-center alert alert-success"><%= flash[:notice] %></p>
+  <% end %>
+  <% if alert %>
+    <p class="alert alert-danger"><%= alert %></p>
   <% end %>
   <div class="grid">
     <% @cards.each do |card| %>
@@ -28,15 +31,10 @@
           <% else %>
             <p class="card-text text-center "><%= link_to card.name, card, :class => "text-decoration-none"%><%= card.effect%></p>
           <% end %>
-          <% if cart.include?(card) %>
-            <%= button_to cart_path(card), :class => "btn btn-outline-danger shadow-sm mt-5 w-100 fw-bold text-uppercase", method: :delete do%>
-              Remove from cart
-            <% end %>
-          <% else %>
-            <%= form_with url: cart_index_path, method: :post do%>
-              <%= hidden_field_tag(:id, card.id)%>
-              <%= button_tag 'Add to Cart', :class => "btn btn-outline-success shadow-sm mt-5 w-100 fw-bold text-uppercase" %>
-            <% end %>
+          <%= form_with url: cart_index_path, method: :post do %>
+            <input type="hidden" name="id" value="<%= card.id %>" />
+            <input type="hidden" name="qty" value="1">
+            <%= button_tag "Add to Cart", class: "btn btn-success shadow-sm mt-5 w-100 fw-bold text-uppercase" %>
           <% end %>
         </div>
       </div>

@@ -3,11 +3,11 @@
   <div class="row">
     <div class="column-margin col-lg-9 mx-auto p-2">
       <h1 class="fw-bold">Card Information</h1>
-      <nav aria-label="breadcrumb ">
+      <nav aria-label="breadcrumb">
         <ol class="breadcrumb pt-3">
-          <li class="breadcrumb-item"><a href="<%= homepage_path %>">Home</a></li>
-          <li class="breadcrumb-item"><a href="">Clan</a></li>
-          <li class="breadcrumb-item"><%=link_to @card.card_clan.name, clan_path(@card.card_clan) %></li>
+          <li class="breadcrumb-item"><a class="text-decoration-none" href="<%= homepage_path %>">Home</a></li>
+          <li class="breadcrumb-item"><a class="text-decoration-none" href="<%= clans_path %>">Clan</a></li>
+          <li class="breadcrumb-item"><%=link_to @card.card_clan.name, clan_path(@card.card_clan), :class => "text-decoration-none" %></li>
           <li class="breadcrumb-item active" aria-current="page"><%=@card.name%></li>
         </ol>
       </nav>
@@ -34,11 +34,11 @@
         <div class="card-body">
           <h5 class="card-title"><%= @card.name%></h5>
           <p><i class="card-text"><%= @card.flavor %></i></p>
-          <p class="card-text">Clan: <%= link_to @card.card_clan.name, clan_path(@card.card_clan) %></p>
+          <p class="card-text text-decoration-none">Clan: <%= link_to @card.card_clan.name, clan_path(@card.card_clan) %></p>
           <p class="card-text">Power: <%= @card.power %></p>
           <p class="card-text">Shield: <%= @card.shield %></p>
           <p class="card-text">Effect: <%= @card.effect %></p>
-          <p class="card-text">Price: <%=number_to_currency @card.price %></p>
+          <b><h4 class="card-text">Price: <%=number_to_currency @card.price %></h4></b>
           <%= form_with url: cart_index_path, method: :post do%>
             <%= hidden_field_tag(:id, @card.id)%>
             <%= button_tag 'Add to Cart', :class => "btn btn-outline-success shadow-sm mt-5 w-100 fw-bold text-uppercase" %>

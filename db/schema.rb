@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_05_013538) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_08_020600) do
   create_table "abouts", force: :cascade do |t|
     t.string "content"
     t.datetime "created_at", null: false
@@ -111,6 +111,22 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_05_013538) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "orders", force: :cascade do |t|
+    t.string "name"
+    t.decimal "price"
+    t.integer "quantity"
+    t.decimal "GST"
+    t.decimal "PST"
+    t.decimal "HST"
+    t.decimal "total"
+    t.string "address"
+    t.string "status"
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
   create_table "provinces", force: :cascade do |t|
     t.string "name"
     t.decimal "pst"
@@ -138,5 +154,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_05_013538) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "cards", "card_clans"
   add_foreign_key "comments", "cards", column: "cards_id"
+  add_foreign_key "orders", "users"
   add_foreign_key "users", "provinces"
 end
