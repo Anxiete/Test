@@ -12,9 +12,9 @@
     <script src="https://kit.fontawesome.com/cba896bee0.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
     <%= javascript_importmap_tags %>
+    <%= javascript_include_tag "application" %>
   </head>
   <body>
-    <%= debug session[:shopping_cart] %>
     <%= yield %>
   </body>
 </html>
