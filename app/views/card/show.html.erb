@@ -33,7 +33,7 @@
       <div class="col-md-8">
         <div class="card-body">
           <h5 class="card-title"><%= @card.name%></h5>
-          <p><i class="card-text"><%= @card.flavor %></i></p>
+          <p><i class="card-text">"<%= @card.flavor %>"</i></p>
           <p class="card-text text-decoration-none">Clan: <%= link_to @card.card_clan.name, clan_path(@card.card_clan) %></p>
           <p class="card-text">Power: <%= @card.power %></p>
           <p class="card-text">Shield: <%= @card.shield %></p>

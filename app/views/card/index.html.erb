@@ -25,7 +25,7 @@
         <% end %>
         <div class="card-body">
           <h5 class="card-text text-center "><%= link_to card.name, card, :class => "text-decoration-none"%></h5>
-          <p class="card-text text-center ">Price: <%= number_to_currency card.price%></p>
+          <p class="card-text text-center fw-bold ">Price: <%= number_to_currency card.price%></p>
           <% if card.effect.length > 200%>
             <p class="card-text text-center "><%= card.effect[0..201] %>...<a class="text-decoration-none" href="<%= card_path(card) %>"> Read More</a></p>
           <% else %>
