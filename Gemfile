@@ -8,6 +8,9 @@ gem 'json', '~> 2.6', '>= 2.6.2'
 gem 'kaminari', '~> 1.2', '>= 1.2.2'
 gem 'net-http', '~> 0.2.2'
 
+gem 'rubocop'
+gem 'rubocop-rails'
+
 gem 'webpacker', '~> 5.4', '>= 5.4.3'
 
 gem 'activeadmin'
