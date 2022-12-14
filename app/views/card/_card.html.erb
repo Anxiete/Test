@@ -1,0 +1,30 @@
+<div class="card g-col-md-3 border border-3 border-dark p-3">
+  <!-- Checks to see if theres an image on active storage if not, uses images link instead. -->
+  <% if card.image.present? %>
+    <img src="<%= url_for(card.image) %>" alt="<%= card.name%> " class="img-fluid">
+  <% else %>
+    <!-- Checks to see if the image link is valid. If not, uses a image of a card back of cardfight vanguard. -->
+    <% 
+          require 'net/http'
+          require 'uri'
+          img_url = card.img
+          res = Net::HTTP.get_response(URI.parse(img_url))
+          img_url = 'https://images.vanguardcard.io/images/assets/CardBack.jpg' unless res.code.to_i >= 200 && res.code.to_i < 400
+        %>
+    <img src="<%=img_url%>" alt="<%= card.name%> " class="img-fluid">
+  <% end %>
+  <div class="card-body">
+    <h5 class="card-text text-center "><%= link_to card.name, card, :class => "text-decoration-none"%></h5>
+    <p class="card-text text-center fw-bold ">Price: <%= number_to_currency card.price%></p>
+    <% if card.effect.length > 200%>
+      <p class="card-text text-center "><%= card.effect[0..201] %>...<a class="text-decoration-none" href="<%= card_path(card) %>"> Read More</a></p>
+    <% else %>
+      <p class="card-text text-center "><%= link_to card.name, card, :class => "text-decoration-none"%><%= card.effect%></p>
+    <% end %>
+    <%= form_with url: cart_index_path, method: :post do %>
+      <input type="hidden" name="id" value="<%= card.id %>" />
+      <input type="hidden" name="qty" value="1">
+      <%= button_tag "Add to Cart", class: "btn btn-success shadow-sm mt-5 w-100 fw-bold text-uppercase" %>
+    <% end %>
+  </div>
+</div>
