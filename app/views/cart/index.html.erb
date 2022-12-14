@@ -1,0 +1,138 @@
+<%= render "card/header" %>
+<div class="container-fluid">
+  <div class="row">
+    <div class="column-margin col-12 p-3 mb-5 pt-5">
+      <div class="col-lg-9 mx-auto p-2">
+        <h1 class="fw-bold">Card Cart</h1>
+        <nav aria-label="breadcrumb ">
+          <ol class="breadcrumb pt-3">
+            <li class="breadcrumb-item"><a href="<%= homepage_path %>">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Cart</li>
+          </ol>
+        </nav>
+        <hr class="mt-3">
+        <div class="d-flex flex-wrap " id="shoe-list">
+          <div class="col-12 col-lg-7 mt-3 p-2">
+            <% if !session[:shopping_cart].any? %>
+              <h3 class="fw-bold">You have no items in your cart.</h3>
+            <% else %>
+              <div class="border bg-white shadow-sm">
+                <% cart.each do |card| %>
+                  <div class="card bg-light shadow-sm p-2 m-3">
+                    <div class="d-flex">
+                      <div class="col-4 d-none d-sm-block">
+                        <% if card.image.present? %>
+                          <img src="<%= url_for(card.image) %>" alt="<%= card.name%> " class="img-fluid">
+                        <% else %>
+                          <!-- Checks to see if the image link is valid. If not, uses a image of a card back of cardfight vanguard. -->
+                          <% 
+                            require 'net/http'
+                            require 'uri'
+                            img_url = card.img
+                            res = Net::HTTP.get_response(URI.parse(img_url))
+                            img_url = 'https://images.vanguardcard.io/images/assets/CardBack.jpg' unless res.code.to_i >= 200 && res.code.to_i < 400
+                          %>
+                          <img src="<%=img_url%>" alt="<%= card.name%> " class="img-fluid">
+                        <% end %>
+                      </div>
+                      <div class="col-8 col-sm-6 p-1 ps-3">
+                        <h5 class="fw-bold"><%= card.name %></h5>
+                        <h5 class="card-text pt-2"><%= number_to_currency card.price%></h5>
+                        <div class="delete-list mt-5">
+                          <%= link_to cart_path(card.id), data: { "turbo-method": :delete }, class: "delete-icon link-dark rounded-circle px-2 py-1 fs-5" do %>
+                            <i class="fas fa-trash"></i>
+                          <% end %>
+                        </div>
+                      </div>
+                      <div class="col">
+                        <h5 class="fw-bold">Qty:</h5>
+                        <%= form_with(url: quantities_path) do %>
+                          <input class="form-control w-100 mt-2" type="hidden" name="id" value="<%= card.id %>" />
+                          <input class="form-control w-100 mt-2" type="number" name="cart_qty" value="<%= session[:shopping_cart].count(card.id) %>" min="1" />
+                          <%= button_tag "Update", class: "btn btn-success shadow-sm mt-3 w-100 fw-bold text-uppercase" %>
+                        <% end %>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+          <div class="col-12 col-lg-5 mt-3 ps-4 ">
+            <% if session[:shopping_cart].any? %>
+              <div class="card border-0 shadow-sm p-3">
+                <div class="">
+                  <h5 class="price fw-bold">Order Summary</h5>
+                  <hr class="mt-2 mb-3">
+                  <% cart.each do |card| %>
+                    <p class="fw-bold"><%= card.name %></p>
+                    <div class="d-flex">
+                      <% session[:subtotal] += (session[:shopping_cart].count(card.id) * card.price) %>
+                      <p class="ms-auto"><%= session[:shopping_cart].count(card.id) %> x <%= number_to_currency(card.price) %> = <%= number_to_currency(session[:shopping_cart].count(card.id) * card.price) %></p>
+                    </div>
+                  <% end %>
+                  <hr class="mt-3">
+                  <div class="d-flex mt-2">
+                    <p class="fw-bold me-auto">Sub Total: </p>
+                    <p class="ms-auto"><%= number_to_currency(session[:subtotal]) %></p>
+                  </div>
+                  <div class="d-flex mt-2">
+                    <p class="fw-bold me-auto">Estimated GST/HST -
+                      <% if user_signed_in? %>
+                        <% if current_user.province.hst == 0%>
+                          <%= (current_user.province.gst * 100).to_i %>%:
+                        <% else %>
+                          <%= (current_user.province.hst * 100).to_i %>%:
+                        <% end %>
+                      <% else %>
+                        0%:
+                      <% end %>
+                    </p>
+                    <% if user_signed_in? && current_user.province.hst == 0 %>
+                      <% session[:gst] = session[:subtotal] * current_user.province.gst %>
+                      <p class="ms-auto"><%= number_to_currency(session[:gst]) %></p>
+                    <% elsif user_signed_in? && current_user.province.hst != 0  %>
+                      <% session[:hst] = session[:subtotal] * current_user.province.hst %>
+                      <p class="ms-auto"><%= number_to_currency(session[:hst]) %></p>
+                    <% else %>
+                      <p class="ms-auto"><%= number_to_currency(0) %></p>
+                    <% end %>
+                  </div>
+                  <div class="d-flex mt-2">
+                    <p class="fw-bold me-auto">Estimated PST -
+                      <% if user_signed_in? %>
+                        <%= (current_user.province.pst * 100).to_i %>%:
+                      <% else %>
+                        0%:
+                      <% end %>
+                    </p>
+                    <% if user_signed_in? && current_user.province.hst == 0 %>
+                      <% session[:pst] = session[:subtotal] * current_user.province.pst %>
+                    <% else %>
+                      <p class="ms-auto"><%= number_to_currency(0) %></p>
+                    <% end %>
+                  </div>
+                  <hr class="mt-2">
+                  <div class="d-flex mt-2 text-success">
+                    <% session[:total] = session[:subtotal] + session[:pst] + session[:gst] + session[:hst]  %>
+                    <h5 class="fw-bold me-auto">Grand Total: </h5>
+                    <h5 class="ms-auto"><%= number_to_currency(session[:total]) %></h5>
+                  </div>
+                  <div>
+                    <% if user_signed_in? %>
+                      <%= form_with(model: @order) do |f| %>
+                        <%= f.submit "Checkout", class: "btn btn-warning shadow-sm mt-5 w-100 fw-bold text-uppercase" %>
+                      <% end %>
+                    <% else %>
+                      <a class="btn btn-warning shadow-sm mt-5 w-100 fw-bold text-uppercase" type="button" href="#">Checkout</a>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

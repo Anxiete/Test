@@ -2,27 +2,9 @@
 <div class="container-fluid p-5">
   <div class="grid">
     <% @cards_search.each do |card| %>
-      <div class="card g-col-md-3 border border-3 border-dark p-3">
-       <% if card.image.present? %>
-          <%= image_tag card.image, :alt => card.name, :class => "img-fluid" %>
-        <% else %>
-        <% 
-          require 'net/http'
-          require 'uri'
-          img_url = card.img
-          res = Net::HTTP.get_response(URI.parse(img_url))
-          img_url = 'https://images.vanguardcard.io/images/assets/CardBack.jpg' unless res.code.to_i >= 200 && res.code.to_i < 400
-        %>
-          <img src="<%=img_url%>" alt="<%= card.name%> " class="img-fluid">
-        <% end %>
-        <div class="card-body">
-          <h5 class="card-text text-center "><%= link_to card.name, card, :class => "text-decoration-none"%></h5>
-          <p class="card-text text-center "><%= card.effect%></p>
-        </div>
-      </div>
+      <%= render "card", card: card %>
     <% end %>
   </div>
-
   <div class="text-center mt-3 mb-3">
     <%= page_entries_info @cards_search %>
   </div>

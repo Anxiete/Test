@@ -12,7 +12,7 @@ ActiveAdmin.register Card do
     f.inputs do
       f.input :image , as: :file, hint: f.object.image.present? ? image_tag(f.object.image, size:"320x480") : ""
       # f.input :img , as: :file, hint: f.object.img.present? ? image_tag(f.object.img, size:"320x480") : ""
-    end
+    end   
     f.actions
   end 
   #
