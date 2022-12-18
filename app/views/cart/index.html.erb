@@ -22,7 +22,7 @@
                     <div class="d-flex">
                       <div class="col-4 d-none d-sm-block">
                         <% if card.image.present? %>
-                          <img src="<%= url_for(card.image) %>" alt="<%= card.name%> " class="img-fluid">
+                          <a href="<%= card_path(card) %>"><img src="<%= url_for(card.image) %>" alt="<%= card.name%> " class="img-fluid"></a>
                         <% else %>
                           <!-- Checks to see if the image link is valid. If not, uses a image of a card back of cardfight vanguard. -->
                           <% 
@@ -32,11 +32,11 @@
                             res = Net::HTTP.get_response(URI.parse(img_url))
                             img_url = 'https://images.vanguardcard.io/images/assets/CardBack.jpg' unless res.code.to_i >= 200 && res.code.to_i < 400
                           %>
-                          <img src="<%=img_url%>" alt="<%= card.name%> " class="img-fluid">
+                          <a href="<%= card_path(card) %>"><img src="<%=img_url%>" alt="<%= card.name%> " class="img-fluid"></a>
                         <% end %>
                       </div>
                       <div class="col-8 col-sm-6 p-1 ps-3">
-                        <h5 class="fw-bold"><%= card.name %></h5>
+                        <h5 class="fw-bold"><%= link_to card.name, card, :class => "text-decoration-none text-dark" %></h5>
                         <h5 class="card-text pt-2"><%= number_to_currency card.price%></h5>
                         <div class="delete-list mt-5">
                           <%= link_to cart_path(card.id), data: { "turbo-method": :delete }, class: "delete-icon link-dark rounded-circle px-2 py-1 fs-5" do %>
@@ -124,7 +124,7 @@
                         <%= f.submit "Checkout", class: "btn btn-warning shadow-sm mt-5 w-100 fw-bold text-uppercase" %>
                       <% end %>
                     <% else %>
-                      <a class="btn btn-warning shadow-sm mt-5 w-100 fw-bold text-uppercase" type="button" href="#">Checkout</a>
+                      <a class="btn btn-warning shadow-sm mt-5 w-100 fw-bold text-uppercase" type="button" href="<%= new_user_session_path %>">Checkout</a>
                     <% end %>
                   </div>
                 </div>

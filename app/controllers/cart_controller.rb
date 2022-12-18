@@ -10,17 +10,12 @@ class CartController < ApplicationController
     card = Card.find(id)
     flash[:notice] = "Added #{card.name} added to cart."
 
-    redirect_to root_path
+    redirect_back_or_to request.params
   end
 
   def destroy
     id = params[:id].to_i
     session[:shopping_cart].delete(id)
     redirect_to cart_index_path
-  end
-
-  def orders
-    @clans = CardClan.all
-    @orders = Order.where("user_id LIKE ?", current_user.id)
   end
 end

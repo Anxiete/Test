@@ -6,10 +6,12 @@
   <% if alert %>
     <p class="alert alert-danger"><%= alert %></p>
   <% end %>
-  <div class="grid">
-    <% @cards.each do |card| %>
-      <%= render "card", card: card %>
-    <% end %>
+  <div class="g-col-12">
+    <div class="row d-flex flex-wrap">
+          <% @cards.each do |card| %>
+            <%= render "card", card: card %>
+          <% end %>
+    </div>
   </div>
   <div class="text-center mt-3 mb-3">
     <%= page_entries_info @cards %>

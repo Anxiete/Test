@@ -12,7 +12,7 @@
       <div class="card g-col-md-3 border border-3 border-dark p-3">
       <!-- Checks to see if theres an image on active storage if not, uses images link instead. -->
         <% if card_clan.image.present? %>
-          <img src="<%= card_clan.image %>" alt="<%= card_clan.name%> " class="img-fluid">
+          <%= image_tag card_clan.image.variant(resize_to_limit: [328, 482]).processed, :alt => card_clan.name, :class => "img-fluid" %>
         <% else %>
         <!-- Checks to see if the image link is valid. If not, uses a image of a card_clan back of card_clanfight vanguard. -->
         <% 
@@ -25,8 +25,8 @@
           <img src="<%=img_url%>" alt="<%= card_clan.name%> " class="img-fluid">
         <% end %>
         <div class="card_clan-body">
-          <h5 class="card_clan-text text-center "><%= link_to card_clan.name, card_clan, :class => "text-decoration-none"%></h5>
-          <p class="card_clan-text text-center ">Price: $<%= card_clan.price%></p>
+          <h5 class="card_clan-text text-center pt-3"><%= link_to card_clan.name, card_clan, :class => "text-decoration-none"%></h5>
+          <p class="card_clan-text text-center fw-bold">Price: $<%= card_clan.price%></p>
           <p class="card_clan-text text-center "><%= card_clan.effect%></p>
         </div>
       </div>

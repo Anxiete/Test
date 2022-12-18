@@ -1,43 +1,90 @@
 <!-- Website Header -->
 <nav class="navbar navbar-expand-lg bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand ps-1" href="#">TCG Space</a>
+  <div class="container-fluid mx-xl-5">
+    <a class="navbar-brand ps-1" href="<%= homepage_path %>">TCG Space</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0 mx-auto">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="<%= homepage_path %>">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="<%= card_index_path %>">Cards</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="<%= aboutstore_path %>">About</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="<%= clans_path %>">Clans</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="<%= contactus_path%>">Contact us</a>
-        </li>
-      </ul>
-    </div>
-    <div class="d-flex pe-4">
-      <ul class="navbar-nav">
-        <% if user_signed_in? %>
-          <li class="nav-item dropdown">
-            <a class="nav-link" href="#" id="navbarDropdown-1" role="button" data-bs-toggle="dropdown"><i class="fas fa-user-circle text-success fs-5"></i>
+    <div class="navbar-collapse collapse" id="navbarSupportedContent">
+      <div class="mx-auto">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 mx-auto">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="<%= homepage_path %>">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="<%= card_index_path %>">Cards</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="<%= aboutstore_path %>">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="<%= clans_path %>">Clans</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="<%= contactus_path%>">Contact us</a>
+            </li>
+          </ul>
+      </div>
+      <div class="d-none d-xl-block">
+        <ul class="d-flex small list-unstyled">
+          <% if user_signed_in? %>
+            <li class="nav-item dropdown">
+              <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown"><i class="fas fa-user-circle text-success fs-4"></i>
+              </a>
+              <ul class="dropdown-menu text-uppercase">
+                <li><a class="dropdown-item" href="<%= edit_user_registration_path %>">My Account</a></li>
+                <li><a class="dropdown-item" href="<%= orders_path %>">My Orders</a></li>
+                <li><%= link_to "Log Out", destroy_user_session_path, method: :delete, :class => "dropdown-item" %></li>
+              </ul>
+            </li>
+          <% else %>
+            <li class="nav-item">
+              <a class="nav-link" href="
+                      <% if user_signed_in? %>
+                          <%= edit_user_registration_path %>
+                      <% else %>
+                          <%= new_user_session_path %>  
+                      <% end %>
+                  ">
+                <i class="fas fa-user-circle fs-4"></i></a>
+            </li>
+          <% end %>
+          <li class="nav-item mx-4">
+            <a class="nav-link" data-bs-toggle="collapse" href="#searchbar">
+              <i class="fas fa-search fs-4"></i>
             </a>
-            <ul class="dropdown-menu text-uppercase" aria-labelledby="navbarDropdown-1">
+          </li>
+          <li class="nav-item me-3">
+            <a class="nav-link" href="<%= cart_index_path %>">
+              <i class="fas fa-shopping-cart fs-4">
+                <% if session[:shopping_cart].any? %>
+                  <% if session[:shopping_cart].count > 0 && session[:shopping_cart].count < 100 %>
+                    <sup class="text-white rounded-1 bg-danger pb-1 px-2 "><%= session[:shopping_cart].count %></sup>
+                  <% else %>
+                    <sup class="text-white rounded-1 bg-danger pb-1 px-2 ">99+</sup>
+                  <% end %>
+                <% end %>
+              </i>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="d-xl-none d-block me-auto mt-2 mx-2 mx-xl-0 pe-4 ">
+      <ul class="d-flex list-unstyled">
+        <% if user_signed_in? %>
+          <li class="nav-item dropdown ms-2">
+            <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown"><i class="fas fa-user-circle text-success fs-5"></i>
+            </a>
+            <ul class="dropdown-menu text-uppercase">
               <li><a class="dropdown-item" href="<%= edit_user_registration_path %>">My Account</a></li>
-              <li><a class="dropdown-item" href="#">My Orders</a></li>
+              <li><a class="dropdown-item" href="<%= orders_path %>">My Orders</a></li>
               <li><%= link_to "Log Out", destroy_user_session_path, method: :delete, :class => "dropdown-item" %></li>
             </ul>
           </li>
         <% else %>
-          <li class="nav-item">
+          <li class="nav-item mx-3">
             <a class="nav-link" href="
                     <% if user_signed_in? %>
                         <%= edit_user_registration_path %>
@@ -48,7 +95,7 @@
               <i class="fas fa-user-circle fs-5"></i></a>
           </li>
         <% end %>
-        <li class="nav-item">
+        <li class="nav-item mx-3">
           <a class="nav-link" data-bs-toggle="collapse" href="#searchbar">
             <i class="fas fa-search fs-5"></i>
           </a>
@@ -68,7 +115,6 @@
         </li>
       </ul>
     </div>
-  </div>
 </nav>
 <!-- Search bar -->
 <div class="collapse pt-5 pe-5 ps-5" id="searchbar">

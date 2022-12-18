@@ -7,10 +7,10 @@ gem 'open-uri', '~> 0.2.0'
 gem 'json', '~> 2.6', '>= 2.6.2'
 gem 'kaminari', '~> 1.2', '>= 1.2.2'
 gem 'net-http', '~> 0.2.2'
-
+gem 'sqlite3', '~> 1.5', '>= 1.5.4'
 gem 'rubocop'
 gem 'rubocop-rails'
-
+ # Use sqlite3 as the database for Active Record
 gem 'webpacker', '~> 5.4', '>= 5.4.3'
 
 gem 'activeadmin'
@@ -63,13 +63,12 @@ gem "bootsnap", require: false
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
-group :production do
- gem "pg", "~> 1.4"
-end
+# group :production do
+#  gem "pg"
+# end
 
 group :development, :test do
-  # Use pg as the database for Active Record
-  gem "pg", "~> 1.4"
+ 
 
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]

@@ -1,9 +1,17 @@
 <%= render "header" %>
 <div class="container-fluid p-5">
-  <div class="grid">
-    <% @cards_search.each do |card| %>
-      <%= render "card", card: card %>
-    <% end %>
+  <% if flash[:notice] %>
+    <p class="text-center alert alert-success"><%= flash[:notice] %></p>
+  <% end %>
+  <% if alert %>
+    <p class="alert alert-danger"><%= alert %></p>
+  <% end %>
+  <div class="g-col-12">
+    <div class="row d-flex flex-wrap justify-content-center">
+      <% @cards_search.each do |card| %>
+        <%= render "card", card: card %>
+      <% end %>
+    </div>
   </div>
   <div class="text-center mt-3 mb-3">
     <%= page_entries_info @cards_search %>
