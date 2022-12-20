@@ -16,12 +16,7 @@
     <% end %>
     <div class="card-body p-0 pt-3">
       <h5 class="card-text text-center fw-bold "><%= link_to card.name, card, :class => "text-decoration-none"%></h5>
-      <p class="card-text text-center fw-bold ">Price: <%= number_to_currency card.price%></p>
-      <% if card.effect.length > 140%>
-        <p class="card-text text-center "><%= card.effect[0..141] %>...<a class="text-decoration-none" href="<%= card_path(card) %>"> Read More</a></p>
-      <% else %>
-        <p class="card-text text-center "><%= card.effect%></p>
-      <% end %>
+      <h4 class="card-text text-center fw-bold ">Price: <%= number_to_currency card.price%></h4>
       <%= form_with url: cart_index_path, method: :post do %>
         <%= hidden_field_tag(:id, card.id)%>
         <%= button_tag "Add to Cart", class: "btn btn-success shadow-sm mt-3 w-100 fw-bold text-uppercase" %>
