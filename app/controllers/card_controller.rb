@@ -9,7 +9,7 @@ class CardController < ApplicationController
 
   def search
     @search_header = true
-    search = params[:search]
+    search = params[:search].to_s
     clan = params[:clans].to_s
     grade = params[:grades].to_s
 
