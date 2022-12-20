@@ -7,7 +7,7 @@ gem 'open-uri', '~> 0.2.0'
 gem 'json', '~> 2.6', '>= 2.6.2'
 gem 'kaminari', '~> 1.2', '>= 1.2.2'
 gem 'net-http', '~> 0.2.2'
-gem 'sqlite3'
+gem 'pg'
 gem 'rubocop'
 gem 'rubocop-rails'
  # Use sqlite3 as the database for Active Record
