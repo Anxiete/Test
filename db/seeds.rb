@@ -52,7 +52,7 @@ end
 card_products = card_fetch("https://vanguardcard.io/api/search.php?limit=500")
 
 card_products.each do |card|
-  # Legends's role
+  # Card clans
   clan_init = CardClan.find_or_create_by(name: card["clan"])
 
   next unless clan_init&.valid?

@@ -2,9 +2,9 @@
 <div class="container-fluid">
     <div class="row">
         <div class="column-margin col-lg-9 mx-auto pt-5">
-            <h1 class="fw-bold">About Us</h1>
-            <nav aria-label="breadcrumb ">
-                <ol class="breadcrumb pt-3">
+            <h1 class="fw-bold text-center">About Us</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb pt-3 d-flex justify-content-center">
                     <li class="breadcrumb-item"><a href="<%= homepage_path %>">Home</a></li>
                     <li class="breadcrumb-item active" aria-current="page">About Us</li>
                 </ol>
@@ -13,6 +13,7 @@
         </div>  
     </div>
     <div class="col-lg-9 mt-3 mx-auto p-2">
+        <p>This is just a project description.</p>
         <% @about_us.each do | about | %>
         <p><%= about.content %></p>
         <% end %>

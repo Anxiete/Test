@@ -7,10 +7,10 @@ gem 'open-uri', '~> 0.2.0'
 gem 'json', '~> 2.6', '>= 2.6.2'
 gem 'kaminari', '~> 1.2', '>= 1.2.2'
 gem 'net-http', '~> 0.2.2'
-gem 'sqlite3', '~> 1.5', '>= 1.5.4'
+gem "pg", "~> 1.1"
 gem 'rubocop'
 gem 'rubocop-rails'
- # Use sqlite3 as the database for Active Record
+ # Use pg as the database for Active Record
 gem 'webpacker', '~> 5.4', '>= 5.4.3'
 
 gem 'activeadmin'
@@ -68,7 +68,6 @@ gem "bootsnap", require: false
 # end
 
 group :development, :test do
- 
 
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]

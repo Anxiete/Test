@@ -15,7 +15,7 @@
       <img src="<%=img_url%>" alt="<%= card.name%> " class="img-fluid">
     <% end %>
     <div class="card-body p-0 pt-3">
-      <h5 class="card-text text-center "><%= link_to card.name, card, :class => "text-decoration-none"%></h5>
+      <h5 class="card-text text-center fw-bold "><%= link_to card.name, card, :class => "text-decoration-none"%></h5>
       <p class="card-text text-center fw-bold ">Price: <%= number_to_currency card.price%></p>
       <% if card.effect.length > 140%>
         <p class="card-text text-center "><%= card.effect[0..141] %>...<a class="text-decoration-none" href="<%= card_path(card) %>"> Read More</a></p>
