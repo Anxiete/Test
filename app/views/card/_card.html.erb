@@ -1,5 +1,5 @@
 <div class="col-md-6 col-sm-8 col-lg-3 mt-4">
-  <div class="card border border-3 border-dark p-3">
+  <div class="box card border border-3 border-dark p-3">
     <!-- Checks to see if theres an image on active storage if not, uses images link instead. -->
     <% if card.image.present? %>
       <img src="<%= url_for(card.image) %>" alt="<%= card.name%> " class="img-fluid">
@@ -14,7 +14,7 @@
           %>
       <img src="<%=img_url%>" alt="<%= card.name%> " class="img-fluid">
     <% end %>
-    <div class="box card-body p-0 pt-3">
+    <div class="card-body p-0 pt-3">
       <h5 class="card-text text-center fw-bold"><%= link_to card.name, card, :class => "text-decoration-none"%></h5>
       <h4 class="card-text text-center fw-bold ">Price: <%= number_to_currency card.price%></h4>
       <%= form_with url: cart_index_path, method: :post do %>
