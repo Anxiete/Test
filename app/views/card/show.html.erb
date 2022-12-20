@@ -23,7 +23,7 @@
   <div class="card mb-1 mx-auto p-3" style="max-width: 75%;">
     <div class="row d-flex justify-content-center g-0">
       <div class="col-md-8 col-lg-4 mx-auto ">
-        <div class="image-zoom d-flex justify-content-center">
+        <div class="image-zoom d-flex justify-content-center px-2">
           <% if @card.image.present? %>
             <%= image_tag url_for(@card.image.variant(resize_to_limit: [380, 554]).processed), :alt => @card.name, :class => "img-fluid" %>
           <% else %>
@@ -50,10 +50,10 @@
             <p class="card-text"><b>Shield:</b> <%= @card.shield %></p>
           <% end %>
           <p class="card-text"><b>Effect:</b> <%= @card.effect %></p>
-          <b><h4 class="card-text mt-5">Price:</b> <%=number_to_currency @card.price %></h4></b>
+          <b><h4 class="card-text mt-4">Price:</b> <%=number_to_currency @card.price %></h4></b>
           <%= form_with url: cart_index_path, method: :post do%>
             <%= hidden_field_tag(:id, @card.id)%>
-            <%= button_tag 'Add to Cart', :class => "btn btn-success shadow-sm mt-5 w-100 fw-bold text-uppercase" %>
+            <%= button_tag 'Add to Cart', :class => "btn btn-success shadow-sm mt-4 w-100 fw-bold text-uppercase" %>
           <% end %>
           <%= form_with url: buy_index_path, method: :post do %>
             <%= hidden_field_tag(:id, @card.id)%>
