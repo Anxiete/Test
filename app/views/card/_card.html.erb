@@ -14,7 +14,7 @@
           %>
       <img src="<%=img_url%>" alt="<%= card.name%> " class="img-fluid">
     <% end %>
-    <div class="card-body h-100 p-0 pt-3">
+    <div class="box card-body p-0 pt-3">
       <h5 class="card-text text-center fw-bold"><%= link_to card.name, card, :class => "text-decoration-none"%></h5>
       <h4 class="card-text text-center fw-bold ">Price: <%= number_to_currency card.price%></h4>
       <%= form_with url: cart_index_path, method: :post do %>
