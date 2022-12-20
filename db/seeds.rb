@@ -12,6 +12,10 @@ require "faker"
 Card.destroy_all
 CardClan.destroy_all
 Province.destroy_all
+AdminUser.destroy_all
+
+AdminUser.create!(email: "admin@example.com", password: "password",
+  password_confirmation: "password")
 
 provinces = [
   { name: "Alberta", provincial: "0.00", goods_and_services: "0.05",
@@ -76,7 +80,7 @@ end
 puts "Created #{Card.count} cards"
 puts "Created #{CardClan.count} clans"
 puts "Created #{Province.count} Provinces"
-if Rails.env.development?
-  AdminUser.create!(email: "admin@example.com", password: "password",
-                    password_confirmation: "password")
-end
+puts "Created #{AdminUser.count} Admins"
+
+
+
