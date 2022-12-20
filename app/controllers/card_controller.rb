@@ -1,6 +1,6 @@
 class CardController < ApplicationController
   def index
-    @cards = Card.includes(:card_clan).all.order('name DESC').page(params[:page])
+    @cards = Card.includes(:card_clan).all.order(created_at: :desc).page(params[:page])
   end
 
   def show
