@@ -1,0 +1,23 @@
+<%= render "card/header" %>
+<!-- MESSAGE -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="column-margin col-12 p-3">
+            <div class="col-lg-9 mx-auto p-2">
+                <% if user_signed_in? %>
+                    <div class="alert alert-success shadow-sm m-0 mt-5" role="alert">
+                        <div class="d-flex align-items-center justify-content-center border">
+                            <i class="fas fa-check-circle fs-1 mx-3"></i>
+                            <p class="lead my-4">Your purchase was successful. Please <a class="text-decoration-none" href="<%= orders_path %>">click here</a> to check the status of your order.</p>
+                        </div>
+                    </div>
+                <% else %>
+                    <div class="alert alert-danger shadow-sm m-0 d-flex align-items-center justify-content-center mt-2" role="alert">
+                        <i class="fas fa-exclamation-triangle fs-1 mx-3"></i>
+                        <p class="lead my-4">You do not have access to this page. Please <a class="text-decoration-none" href="<%= sneakers_path %>">click here</a> to return.</p>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>
