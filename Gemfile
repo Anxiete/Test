@@ -7,10 +7,10 @@ gem 'open-uri', '~> 0.2.0'
 gem 'json', '~> 2.6', '>= 2.6.2'
 gem 'kaminari', '~> 1.2', '>= 1.2.2'
 gem 'net-http', '~> 0.2.2'
-gem "pg", "~> 1.1"
+gem 'sqlite3'
 gem 'rubocop'
 gem 'rubocop-rails'
- # Use pg as the database for Active Record
+ # Use sqlite3 as the database for Active Record
 gem 'webpacker', '~> 5.4', '>= 5.4.3'
 
 gem 'activeadmin'

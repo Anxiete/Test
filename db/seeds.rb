@@ -69,13 +69,13 @@ card_products.each do |card|
     effect:    card["effect"],
     format:    card["format"],
     img:       card["image_url"],
-    price:     rand(5.00..50.00)
-    # price:     Faker::Number.call(l_digits: 2) for local use
+    # price:     rand(5.00..50.00)
+    price:     Faker::Number.decimal(l_digits: 2)
   )
 end
-Rails.logger.debug "Created #{Card.count} cards"
-Rails.logger.debug "Created #{CardClan.count} clans"
-Rails.logger.debug "Created #{Province.count} Provinces"
+puts "Created #{Card.count} cards"
+puts "Created #{CardClan.count} clans"
+puts "Created #{Province.count} Provinces"
 if Rails.env.development?
   AdminUser.create!(email: "admin@example.com", password: "password",
                     password_confirmation: "password")
