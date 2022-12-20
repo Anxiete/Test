@@ -69,7 +69,8 @@ card_products.each do |card|
     effect:    card["effect"],
     format:    card["format"],
     img:       card["image_url"],
-    price:     Faker::Number.call(l_digits: 2)
+    price:     rand(5.00..50.00)
+    # price:     Faker::Number.call(l_digits: 2) for local use
   )
 end
 Rails.logger.debug "Created #{Card.count} cards"
