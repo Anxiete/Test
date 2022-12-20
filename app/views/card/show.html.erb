@@ -25,7 +25,7 @@
       <div class="col-md-8 col-lg-4 mx-auto ">
         <div class="image-zoom d-flex justify-content-center">
           <% if @card.image.present? %>
-            <%= image_tag @card.image.variant(resize_to_limit: [380, 554]).processed, :alt => @card.name, :class => "img-fluid" %>
+            <%= image_tag url_for(@card.image.variant(resize_to_limit: [380, 554]).processed), :alt => @card.name, :class => "img-fluid" %>
           <% else %>
             <% 
             require 'net/http'
