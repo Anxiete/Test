@@ -84,4 +84,3 @@ production:
   database: tcg_store_production
   username: tcg_store
   password: <%= ENV["TCG_STORE_DATABASE_PASSWORD"] %>
-
