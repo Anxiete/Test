@@ -8,6 +8,7 @@ gem 'json', '~> 2.6', '>= 2.6.2'
 gem 'kaminari', '~> 1.2', '>= 1.2.2'
 gem 'net-http', '~> 0.2.2'
 gem 'pg'
+gem 'htmlbeautifier'
  # Use sqlite3 as the database for Active Record
 gem 'webpacker', '~> 5.4', '>= 5.4.3'
 
