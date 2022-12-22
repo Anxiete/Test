@@ -11,6 +11,9 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.0].define(version: 2022_12_20_141815) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "abouts", force: :cascade do |t|
     t.string "content"
     t.datetime "created_at", null: false
@@ -21,9 +24,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_20_141815) do
     t.string "namespace"
     t.text "body"
     t.string "resource_type"
-    t.integer "resource_id"
+    t.bigint "resource_id"
     t.string "author_type"
-    t.integer "author_id"
+    t.bigint "author_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author"
@@ -88,7 +91,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_20_141815) do
     t.text "flavor"
     t.text "effect"
     t.string "format"
-    t.integer "card_clan_id", null: false
+    t.bigint "card_clan_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "img"
@@ -99,7 +102,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_20_141815) do
   create_table "comments", force: :cascade do |t|
     t.string "user"
     t.string "user_comment"
-    t.integer "cards_id", null: false
+    t.bigint "cards_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["cards_id"], name: "index_comments_on_cards_id"
@@ -121,7 +124,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_20_141815) do
     t.decimal "total"
     t.string "address"
     t.string "status"
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_orders_on_user_id"
@@ -144,7 +147,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_20_141815) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "province_id", null: false
+    t.bigint "province_id", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["province_id"], name: "index_users_on_province_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
