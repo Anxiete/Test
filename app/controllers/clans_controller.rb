@@ -6,5 +6,6 @@ class ClansController < ApplicationController
 
   def show
     @clan = CardClan.find(params[:id])
+    @clan_cards = @clan.cards.page(params[:page]).per(12)
   end
 end

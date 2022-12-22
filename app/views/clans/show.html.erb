@@ -25,4 +25,10 @@
           <% end %>
     </div>
    </div>
+   <div class="justify-content-center text-center mt-3 mb-3">
+        <%= page_entries_info @clan_cards %>
+    </div>
+    <div class="pagination justify-content-center">
+        <%= paginate @clan_cards, window: 2 %>
+    </div>
 </div>
