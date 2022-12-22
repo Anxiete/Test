@@ -20,7 +20,7 @@
   <% end %>
   <div class="col-12 mx-auto">
     <div class="row">
-      <% @clan_cards.cards.each do |card_clan| %>
+      <% @clan_cards.each do |card_clan| %>
         <%= render "card/card", card: card_clan %>
       <% end %>
     </div>
