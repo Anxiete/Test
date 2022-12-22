@@ -2,9 +2,9 @@
 <div class="container-fluid">
     <div class="row">
         <div class="column-margin col-lg-9 mx-auto pt-5">
-            <h1 class="fw-bold">Clans</h1>
-            <nav aria-label="breadcrumb ">
-                <ol class="breadcrumb pt-3">
+            <h1 class="fw-bold text-center">Clans</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb pt-3 d-flex justify-content-center">
                     <li class="breadcrumb-item"><a href="<%= homepage_path %>">Home</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Clans</li>
                 </ol>
@@ -19,7 +19,7 @@
             <div class="col-md-6 col-sm-8 col-lg-4 mx-auto mt-4">
               <div class="card border border-3 border-dark p-3">
                   <div class="card-body">
-                    <h4 class="card-text text-center"><%= link_to clan.name, clan_path(clan) %></h4>
+                    <h4 class="card-text text-center"><%= link_to clan.name, clan_path(clan), :class => "text-decoration-none" %></h4>
                   </div>
               </div>
             </div>

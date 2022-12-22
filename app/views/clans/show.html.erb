@@ -1,35 +1,28 @@
 <%= render "card/header" %>
-<nav aria-label="breadcrumb ">
-  <ol class="breadcrumb pt-3 ps-3">
-    <li class="breadcrumb-item"><a href="<%= homepage_path %>">Home</a></li>
-    <li class="breadcrumb-item"><a href="<%= clans_path %>">Clan</a></li>
-    <li class="breadcrumb-item active" aria-current="page"><%=@clan.name%></a></li>
-  </ol>
-</nav>
-<div class="container-fluid ps-5 p3-5 pb-5">
-  <div class="grid">
-    <% @clan.cards.each do |card_clan| %>
-      <div class="card g-col-md-3 border border-3 border-dark p-3">
-      <!-- Checks to see if theres an image on active storage if not, uses images link instead. -->
-        <% if card_clan.image.present? %>
-          <%= image_tag card_clan.image.variant(resize_to_limit: [328, 482]).processed, :alt => card_clan.name, :class => "img-fluid" %>
-        <% else %>
-        <!-- Checks to see if the image link is valid. If not, uses a image of a card_clan back of card_clanfight vanguard. -->
-        <% 
-          require 'net/http'
-          require 'uri'
-          img_url = card_clan.img
-          res = Net::HTTP.get_response(URI.parse(img_url))
-          img_url = 'https://images.vanguardcard_clan.io/images/assets/card_clanBack.jpg' unless res.code.to_i >= 200 && res.code.to_i < 400
-        %>
-          <img src="<%=img_url%>" alt="<%= card_clan.name%> " class="img-fluid">
-        <% end %>
-        <div class="card_clan-body">
-          <h5 class="card_clan-text text-center pt-3"><%= link_to card_clan.name, card_clan, :class => "text-decoration-none"%></h5>
-          <p class="card_clan-text text-center fw-bold">Price: $<%= card_clan.price%></p>
-          <p class="card_clan-text text-center "><%= card_clan.effect%></p>
-        </div>
-      </div>
-    <% end %>
-  </div>
+<div class="container-fluid px-5">
+ <div class="row">
+    <div class="column-margin col-lg-9 mx-auto pt-4">
+        <h1 class="fw-bold text-center"><%=@clan.name%></h1>
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb pt-3 d-flex justify-content-center">
+            <li class="breadcrumb-item"><a href="<%= homepage_path %>">Home</a></li>
+            <li class="breadcrumb-item"><a href="<%= clans_path %>">Clan</a></li>
+            <li class="breadcrumb-item active" aria-current="page"><%=@clan.name%></a></li>
+          </ol>
+        </nav>
+        <hr class="mt-3">
+    </div>  
+  <% if flash[:notice] %>
+    <p class="text-center alert alert-success"><%= flash[:notice] %></p>
+  <% end %>
+  <% if alert %>
+    <p class="alert alert-danger"><%= alert %></p>
+  <% end %>
+  <div class="col-12 mx-auto">
+    <div class="row">
+          <% @clan.cards.each do |card_clan| %>
+            <%= render "card/card", card: card_clan %>
+          <% end %>
+    </div>
+   </div>
 </div>
