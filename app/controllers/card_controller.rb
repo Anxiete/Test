@@ -14,13 +14,13 @@ class CardController < ApplicationController
     grade = params[:grades].to_s
 
     @cards_search = if params[:grades].present? && params[:clans].present?
-                      Card.where('name LIKE ? AND card_clan_id = ? AND grade = ?', "%#{search}%", clan.to_s, grade.to_s).order(:name).includes(:card_clan).all.page(params[:page]).per(12)
+                      Card.where('name ILIKE ? AND card_clan_id = ? AND grade = ?', "%#{search}%", clan.to_s, grade.to_s).order(:name).includes(:card_clan).all.page(params[:page]).per(12)
                     elsif params[:grades].present?
-                      Card.where('name LIKE ? AND grade = ?', "%#{search}%", grade.to_s).order(:name).includes(:card_clan).all.page(params[:page]).per(12)
+                      Card.where('name ILIKE ? AND grade = ?', "%#{search}%", grade.to_s).order(:name).includes(:card_clan).all.page(params[:page]).per(12)
                     elsif params[:clans].present?
-                      Card.where('name LIKE ? AND card_clan_id = ?', "%#{search}%", clan.to_s).order(:name).includes(:card_clan).all.page(params[:page]).per(12)
+                      Card.where('name ILIKE ? AND card_clan_id = ?', "%#{search}%", clan.to_s).order(:name).includes(:card_clan).all.page(params[:page]).per(12)
                     else
-                      Card.where('name LIKE ?', "%#{search}%").order(:name).includes(:card_clan).all.page(params[:page]).per(12)
+                      Card.where('name ILIKE ?', "%#{search}%").order(:name).includes(:card_clan).all.page(params[:page]).per(12)
                     end
   end
 end
