@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   def index
-    @orders = Order.where("cast(user_id as text) LIKE ?", current_user.id)
+    @orders = Order.where("user_id LIKE ?", current_user.id)
   end
 
   def create
